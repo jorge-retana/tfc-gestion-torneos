@@ -3,11 +3,19 @@ import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.css';
 import Navegacion from './Navegacion';
 import ComponenteAddMatch from './ComponenteAddMatch';
+import ComponenteListPartidos from './ComponenteListPartidos';
 
 
 const MainApp = props => {
 
   const [partidos, setPartidos] = useState([]);
+  console.log(partidos);
+  // props.partidos.map((item, index) => {
+  //   return (
+  //     console.log('map', item.fecha)
+
+  //   );
+  // });
   const [visualizacion, setVisualizacion] = useState({
     componenteAddMatch: true,
     // componenteTodos: true,
@@ -23,6 +31,9 @@ const MainApp = props => {
         <div className="row mt-4">
           <div className="col-8">
             <ComponenteAddMatch setMatch={setPartidos} />
+          </div>
+          <div className="col-8">
+            <ComponenteListPartidos list={partidos} />
           </div>
 
         </div>

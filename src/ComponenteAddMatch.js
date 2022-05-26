@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -155,7 +154,7 @@ const ComponenteAddMatch = (datos) => {
                         name="privado"
                         checked={partido.privado}
                     ></input>
-                    <label className="form-check-label" for="core">partido privado</label>
+                    <label className="form-check-label" htmlFor="core">partido privado</label>
                 </div>
                 <button
                     className="btn btn-primary"
