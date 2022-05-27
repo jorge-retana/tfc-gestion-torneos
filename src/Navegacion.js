@@ -6,7 +6,7 @@ const Navegacion = ({ visualizacion }) => {
     <div>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <a className="navbar-brand" href="/#">Proyectos</a>
+          <a className="navbar-brand" href="/#">Torneos</a>
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <a
