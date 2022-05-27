@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { db } from './firebase-config'
+import { collection, getDocs, addDoc } from 'firebase/firestore'
+
 
 import "react-datepicker/dist/react-datepicker.css";
 
 const ComponenteAddMatch = (datos) => {
 
+    const partidosCollectionRef = collection(db, 'partidos');
+    const [nuevoDia, setNuevoDia] = useState("")
+    const [nuevaHora, setNuevaHora] = useState("")
+    const [nuevoOrganizador, setNuevoOrganizador] = useState("")
+    const crearPartido = async () => {
+        await addDoc(partidosCollectionRef, { dia: nuevoDia, hora: nuevaHora, organizador: nuevoOrganizador })
+    }
 
     const [tipo, setTipo] = useState([
         "Voley pista",
@@ -44,9 +54,9 @@ const ComponenteAddMatch = (datos) => {
                     <input
                         type="date"
                         className="form-control"
-                        onChange={handleInputs}
-                        name="dia"
-                        value={partido.dia}
+                        onChange={(event) => { setNuevoDia(event.target.value) }}
+                        // name="dia"
+                        // value={partido.dia}
                     ></input>
                 </div>
                 <div className="mb-3">
@@ -54,19 +64,19 @@ const ComponenteAddMatch = (datos) => {
                     <input
                         type="time"
                         className="form-control"
-                        onChange={handleInputs}
-                        name="hora"
-                        value={partido.hora}
+                        onChange={(event) => { setNuevaHora(event.target.value) }}
+                        // name="hora"
+                        // value={partido.hora}
                     ></input>
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Correo organizador</label>
+                    <label className="form-label">Organizador</label>
                     <input
-                        type="email"
+                        type="text"
                         className="form-control"
-                        onChange={handleInputs}
-                        name="organizador"
-                        value={partido.organizador}
+                        onChange={(event) => { setNuevoOrganizador(event.target.value) }}
+                        // name="organizador"
+                        // value={partido.organizador}
                     ></input>
                 </div>
 
@@ -96,27 +106,27 @@ const ComponenteAddMatch = (datos) => {
                 </div>
 
                 <div className="mb-3">
-          <label className="form-label">Integrantes</label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={(e) => {
-              setIntegrante(e.target.value);
-            }}
-            name="integrantes"
-            value={integrante}
-          ></input>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              integrante.length > 0
-                ? handleIntegrante()
-                : alert("Por favor mete algo en el integrante");
-            }}
-          >
-            Agregar integrante
-          </button>
-          {/* <button
+                    <label className="form-label">Integrantes</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        onChange={(e) => {
+                            setIntegrante(e.target.value);
+                        }}
+                        name="integrantes"
+                        value={integrante}
+                    ></input>
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            integrante.length > 0
+                                ? handleIntegrante()
+                                : alert("Por favor mete algo en el integrante");
+                        }}
+                    >
+                        Agregar integrante
+                    </button>
+                    {/* <button
             onClick={(e) => {
               e.preventDefault();
               setPartido({ ...partido, equipo: equipo });
@@ -124,7 +134,7 @@ const ComponenteAddMatch = (datos) => {
           >
             Validar equipo
           </button> */}
-          {/* <button
+                    {/* <button
             onClick={(e) => {
               e.preventDefault();
 
@@ -138,7 +148,7 @@ const ComponenteAddMatch = (datos) => {
           >
             Eliminar equipo
           </button> */}
-        </div>
+                </div>
 
                 <ul>
                     {partido.equipo.map((data) => (
@@ -158,22 +168,23 @@ const ComponenteAddMatch = (datos) => {
                 </div>
                 <button
                     className="btn btn-primary"
-                    onClick={(e) => {
-                        e.preventDefault();
-                        datos.setMatch((valor_anterior) => {
-                            return [...valor_anterior, partido];
-                        });
+                    onClick={(crearPartido)}
+                // onClick={(e) => {
+                //     e.preventDefault();
+                //     datos.setMatch((valor_anterior) => {
+                //         return [...valor_anterior, partido];
+                //     });
 
-                        setPartido({
-                            dia: "",
-                            hora: "",
-                            organizador: "",
-                            presupuesto: 0,
-                            tipo: "",
-                            equipo: [],
-                            privado: false,
-                        });
-                    }}
+                //     setPartido({
+                //         dia: "",
+                //         hora: "",
+                //         organizador: "",
+                //         presupuesto: 0,
+                //         tipo: "",
+                //         equipo: [],
+                //         privado: false,
+                //     });
+                // }}
                 >
                     Agregar partido
                 </button>
