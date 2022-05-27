@@ -38,6 +38,7 @@ const ComponenteAddMatch = (datos) => {
       setPartido({ ...partido, [target.name]: target.value });
     }
   };
+  
   return (
     <>
       <h2>Agregar partido</h2>
