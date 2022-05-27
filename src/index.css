@@ -1,8 +1,8 @@
 html,
 body {
   color: #21232a;
-  background-color: white;
-  font-family: "Courier New", Courier, monospace;
+  background-color: #FDFDFD;
+  font-family: "Nimbus Sans", Commissioner, monospace;
   font-size: 1.3rem;
   margin: 0;
 }

@@ -1,9 +1,9 @@
 import React from 'react'
-import './navegacion.css';
+//import './navegacion.css';
 
 const Navegacion = ({ visualizacion }) => {
   return (
-    <div>
+    <div className="mt-2">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand" href="/#">Proyectos</a>

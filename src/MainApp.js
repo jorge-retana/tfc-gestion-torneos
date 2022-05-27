@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types';
 import 'bootstrap/dist/css/bootstrap.css';
+import './index.css';
 import Navegacion from './Navegacion';
 import ComponenteAddMatch from './ComponenteAddMatch';
 import ComponenteListPartidos from './ComponenteListPartidos';
@@ -25,7 +26,7 @@ const MainApp = props => {
     <div className="App container">
       <Navegacion visualizacion={setVisualizacion} />
       <div className="container mt-4">
-        <h1>Aplicación de gestión de Partidos y torneos de Volleyball</h1>
+        <h1 className=" ">Aplicación de gestión de Partidos y torneos de Volleyball</h1>
         <h2>El número de partidos actuales es de: {partidos.length}</h2>
 
         <div className="row mt-4">
